@@ -3,12 +3,18 @@ source 'https://rubygems.org'
 ruby "2.0.0"
 
 gem 'rails', '3.2.18'
+gem 'figaro'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 group :development, :test do
   gem 'sqlite3'
+  gem 'pry-rails'
+  gem 'pry-coolline'
+  gem 'pry-byebug'
+  gem 'pry-stack_explorer'
+  gem 'rb-readline'
 end
 
 # Gems used only for assets and not required

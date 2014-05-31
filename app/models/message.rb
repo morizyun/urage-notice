@@ -1,11 +1,13 @@
 class Message < ActiveRecord::Base
   belongs_to :notice
 
+  LOCALES = %w(ja en).freeze
+
   attr_accessible :subject, :body, :locale
 
   validates_presence_of :subject
   validates_presence_of :body
-  validates_inclusion_of :locale, :in => ["ja", "en"]
+  validates_inclusion_of :locale, :in => LOCALES
 
   def self.locale(*locales)
     locales.empty? ? where("1 = 1") : where(:locale => locales)

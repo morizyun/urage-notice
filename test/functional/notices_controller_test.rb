@@ -34,7 +34,7 @@ class NoticesControllerTest < ActionController::TestCase
         "created_at" => :_,
         "updated_at" => :_,
         "close_at" => "2012-10-03T00:00:00Z",
-        "messages" => [
+        "notices" => [
           {
             "id" => :_, "created_at" => :_, "updated_at" => :_,
             "subject" => "Japanese",
@@ -53,7 +53,7 @@ class NoticesControllerTest < ActionController::TestCase
         "created_at" => :_,
         "updated_at" => :_,
         "close_at" => "2012-10-03T00:00:00Z",
-        "messages" => [
+        "notices" => [
           {
             "id" => :_, "created_at" => :_, "updated_at" => :_,
             "subject" => "English",
@@ -72,7 +72,7 @@ class NoticesControllerTest < ActionController::TestCase
         "created_at" => :_,
         "updated_at" => :_,
         "close_at" => "2012-10-03T00:00:00Z",
-        "messages" => [:_, :_]
+        "notices" => [:_, :_]
       }]
     }, JSON.parse(response.body))
   end
@@ -97,7 +97,7 @@ class NoticesControllerTest < ActionController::TestCase
         "created_at" => :_,
         "updated_at" => :_,
         "close_at" => nil,
-        "messages" => [
+        "notices" => [
           {
             "id" => :_, "created_at" => :_, "updated_at" => :_,
             "subject" => "Hello world",

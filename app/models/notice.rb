@@ -1,8 +1,8 @@
 class Notice < ActiveRecord::Base
-  has_many :messages
+  has_many :notices
 
-  attr_accessible :close_at, :messages, :messages_attributes
-  accepts_nested_attributes_for :messages
+  attr_accessible :close_at, :notices, :messages_attributes
+  accepts_nested_attributes_for :notices
 
   def self.open(now = Time.now)
     where("close_at IS NULL OR ? < close_at", now)
@@ -12,7 +12,7 @@ class Notice < ActiveRecord::Base
     if locales.empty?
       where("1 = 1")
     else
-      where("EXISTS (SELECT * FROM messages WHERE messages.notice_id = notices.id AND messages.locale IN (?))", locales)
+      where("EXISTS (SELECT * FROM notices WHERE notices.notice_id = notices.id AND notices.locale IN (?))", locales)
     end
   end
 
@@ -28,7 +28,7 @@ class Notice < ActiveRecord::Base
       :created_at => self.created_at,
       :updated_at => self.updated_at,
       :close_at => self.close_at,
-      :messages => self.messages.locale(*locales).as_json(options)
+      :notices => self.messages.locale(*locales).as_json(options)
     }
   end
 end

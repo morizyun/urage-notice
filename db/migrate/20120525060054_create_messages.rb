@@ -1,6 +1,6 @@
 class CreateMessages < ActiveRecord::Migration
   def change
-    create_table :messages do |t|
+    create_table :notices do |t|
       t.references :notice
       t.string :locale
       t.string :subject

@@ -2,6 +2,8 @@
 
 <table>
   <tr>
+    <th>close_at</th>
+    <th>created_at</th>
     <th></th>
     <th></th>
     <th></th>
@@ -9,6 +11,8 @@
 
 <% @notices.each do |notice| %>
   <tr>
+    <td><%= notice.close_at.to_s %></td>
+    <td><%= notice.created_at.to_s %></td>
     <td><%= link_to 'Show', admin_notice_path(id: notice.id) %></td>
     <td><%= link_to 'Edit', edit_admin_notice_path(notice) %></td>
     <td><%= link_to 'Destroy', admin_notice_path(notice), method: :delete, data: { confirm: 'Are you sure?' } %></td>

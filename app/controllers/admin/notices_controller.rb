@@ -25,6 +25,7 @@ class Admin::NoticesController < ApplicationController
   # GET /admin/notices/new.json
   def new
     @notice = Notice.new
+    @notice.close_at = Time.now + 1.month
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,9 +41,9 @@ class Admin::NoticesController < ApplicationController
   # POST /admin/notices
   # POST /admin/notices.json
   def create
-    binding.pry
+    # TODO 指定しなくていいようにする
     @notice = Notice.new({
-                             close_at: closed_at_to_date
+                             close_at: close_at_to_date
                          })
 
 
@@ -87,7 +88,7 @@ class Admin::NoticesController < ApplicationController
 
   private
 
-  def closed_at_to_date
-    Time::local(params[:notices]['closed_at(1i)'], params[:notices]['closed_at(2i)'],params[:notices]['closed_at(3i)'], params[:notices]['closed_at(4i)'], params[:notices]['closed_at(5i)'])
+  def close_at_to_date
+    Time::local(params[:notice]['close_at(1i)'], params[:notice]['close_at(2i)'],params[:notice]['close_at(3i)'], params[:notice]['close_at(4i)'], params[:notice]['close_at(5i)'])
   end
 end

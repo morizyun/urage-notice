@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+<%= @notice.close_at.to_s %>
 
 <%= link_to 'Edit', edit_admin_notice_path(id: @notice.id) %> |
 <%= link_to 'Back', admin_notices_path %>

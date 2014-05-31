@@ -1,0 +1,7 @@
+messages_attributes:
+  - locale: ja
+    subject: ユビレジ 2.14 をリリースしました
+    body:
+      6月3日にバージョン2.14をリリースしました。
+      このリリースでは入力が完了した会計を、iPad間で同期する機能が追加されました。
+      iPadのApp Storeから無料でアップデートできます！

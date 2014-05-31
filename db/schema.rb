@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(:version => 20140531142554) do
 
-  create_table "notices", :force => true do |t|
+  create_table "messages", :force => true do |t|
     t.integer  "notice_id"
     t.string   "locale",     :null => false
     t.string   "subject"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(:version => 20140531142554) do
     t.datetime "updated_at", :null => false
   end
 
-  add_index "notices", ["notice_id", "locale"], :name => "index_messages_on_notice_id_and_locale", :unique => true
+  add_index "messages", ["notice_id", "locale"], :name => "index_messages_on_notice_id_and_locale", :unique => true
 
   create_table "notices", :force => true do |t|
     t.datetime "close_at"

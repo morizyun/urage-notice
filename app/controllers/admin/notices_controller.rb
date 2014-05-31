@@ -1,94 +1,58 @@
 class Admin::NoticesController < ApplicationController
-  # GET /admin/notices
-  # GET /admin/notices.json
   def index
     @notices = Notice.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @notices }
-    end
   end
 
-  # GET /admin/notices/1
-  # GET /admin/notices/1.json
   def show
     @notice = Notice.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @notice }
-    end
   end
 
-  # GET /admin/notices/new
-  # GET /admin/notices/new.json
   def new
     @notice = Notice.new
     @notice.close_at = Time.now + 1.month
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @notice }
-    end
   end
 
-  # GET /admin/notices/1/edit
   def edit
     @notice = Notice.find(params[:id])
   end
 
-  # POST /admin/notices
-  # POST /admin/notices.json
   def create
     # TODO 指定しなくていいようにする
-    @notice = Notice.new({
-                             close_at: close_at_to_date
-                         })
+    @notice = Notice.new({close_at: close_at_to_date})
 
-
-    respond_to do |format|
-      if @notice.save
-        format.html { redirect_to admin_notice_path(id: @notice.id), notice: 'Notice was successfully created.' }
-        format.json { render json: @notice, status: :created, location: @notice }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @notice.errors, status: :unprocessable_entity }
-      end
+    if @notice.save
+      redirect_to admin_notice_path(id: @notice.id)
+    else
+      render 'new'
     end
   end
 
-  # PUT /admin/notices/1
-  # PUT /admin/notices/1.json
   def update
     @notice = Notice.find(params[:id])
 
-    respond_to do |format|
-      if @notice.update_attributes(params[:admin_notice])
-        format.html { redirect_to @notice, notice: 'Notice was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @notice.errors, status: :unprocessable_entity }
-      end
+    if @notice.update_attributes(params[:admin_notice])
+      redirect_to admin_notice_path(@notice)
+    else
+      render  'edit'
     end
   end
 
-  # DELETE /admin/notices/1
-  # DELETE /admin/notices/1.json
   def destroy
     @notice = Notice.find(params[:id])
     @notice.destroy
 
-    respond_to do |format|
-      format.html { redirect_to admin_notices_url }
-      format.json { head :no_content }
-    end
+    redirect_to admin_notices_url
   end
 
   private
 
   def close_at_to_date
-    Time::local(params[:notice]['close_at(1i)'], params[:notice]['close_at(2i)'],params[:notice]['close_at(3i)'], params[:notice]['close_at(4i)'], params[:notice]['close_at(5i)'])
+    return nil unless params[:notice]['close_at(1i)']
+
+    Time::local(params[:notice]['close_at(1i)'],
+                params[:notice]['close_at(2i)'],
+                params[:notice]['close_at(3i)'],
+                params[:notice]['close_at(4i)'],
+                params[:notice]['close_at(5i)'])
   end
 end

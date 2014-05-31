@@ -1,16 +1,13 @@
 UbiregiNotice::Application.routes.draw do
   namespace :admin do
     get '/' => 'notices#index'
-    resources :notices
+
+    resources :notices do
+      resources :messages, shallow: true
+    end
   end
 
-  get '/notices' => 'notices#index', :as => :notices
-  get '/notices/open' => 'notices#index_open', :as => :open_notices
-  get '/notices/:id' => 'notices#show', :as => :notice
-
-  post '/notices' => 'notices#create'
-  put '/notices/:id' => 'notices#update'
-  post '/notices/:id/close' => 'notices#close'
+  get '/notices'      => 'notices#index', :as => :notices
 
   get '/' => 'welcome#index'
 end
